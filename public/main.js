@@ -1,10 +1,9 @@
 // ./public/electron.js
-import path from 'path';
-
-import { app, BrowserWindow } from 'electron';
-import isDev from 'electron-is-dev';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import path from "path";
+import { app, BrowserWindow } from "electron";
+import isDev from "electron-is-dev";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -17,9 +16,9 @@ function createWindow() {
     icon: __dirname + "/favicon.ico",
     webPreferences: {
       nodeIntegration: true,
+      enableRemoteModule: true,
     },
   });
-    console.log("🚀 ~ createWindow ~ __dirname:", __dirname + 'favicon.ico')
 
   win.setMenu(null);
 
@@ -27,13 +26,9 @@ function createWindow() {
   // win.loadFile("index.html");
   win.loadURL(
     isDev
-      ? 'http://localhost:3000'
-      : `file://${path.join(__dirname, '../build/index.html')}`
+      ? "http://localhost:3000"
+      : `file://${path.join(__dirname, "../build/index.html")}`
   );
-  // Open the DevTools.
-  if (isDev) {
-    win.webContents.openDevTools({ mode: 'detach' });
-  }
 }
 
 // This method will be called when Electron has finished
@@ -44,13 +39,13 @@ app.whenReady().then(createWindow);
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bars to stay active until the user quits
 // explicitly with Cmd + Q.
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
     app.quit();
   }
 });
 
-app.on('activate', () => {
+app.on("activate", () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
   }

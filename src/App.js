@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import sheep from "./assets/img/sheep.png";
-import { Download } from "react-basicons";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import html2canvas from "html2canvas";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
 
 const App = () => {
   const [displayPopup, setDisplayPopup] = useState("none");
@@ -122,12 +123,12 @@ const App = () => {
         </div>
         <div className=" relative w-full h-2/3 flex justify-center items-center">
           <button
-            className="absolute bottom-4 right-4 text-white border-green-800 border-2 rounded"
+            className="absolute bottom-4 right-4 text-white transition-all hover:scale-125"
             onClick={() => {
               setDisplayPopup("flex")
             }}
           >
-            <Download color="green" size={30} weight={2} />
+            <FontAwesomeIcon icon={faDownload} size="xl" color="green" />
           </button>
           <div id="label" className="h-[5cm] w-[10cm]">
             <div

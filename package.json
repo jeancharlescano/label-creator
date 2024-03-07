@@ -1,27 +1,51 @@
 {
   "name": "label-creator",
+  "author": "Jean-Charles CANO",
+  "description": "Application de génération d'étiquette pour le magasin Reflets Montagne",
   "version": "0.1.0",
-  "type": "module",
   "private": true,
-  "main": "public/electron.js",
-  "homepage": "./",
+  "type": "module",
   "dependencies": {
+    "@electron/remote": "^2.1.2",
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron-is-dev": "^3.0.1",
     "html2canvas": "^1.4.1",
     "react": "^18.2.0",
-    "react-basicons": "^0.3.4",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "wait-on": "^7.2.0",
     "web-vitals": "^2.1.4"
   },
+  "main": "public/main.js",
+  "homepage": "./",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "concurrently \"SET BROWSER=none&&npm run start\" \"wait-on http://localhost:3000 && electron .\""
+    "electron:serve": "concurrently -k \"set BROWSER=NONE&&npm start\" \"npm run electron:start\"",
+    "electron:build": "npm run build && electron-builder -c.extraMetadata.main=build/main.js",
+    "electron:start": "wait-on tcp:3000 && electron ."
+  },
+  "build": {
+    "extends": null,
+    "appId": "com.example.electron-cra",
+    "files": [
+      "dist/**/*",
+      "build/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
   },
   "eslintConfig": {
     "extends": [
@@ -42,11 +66,8 @@
     ]
   },
   "devDependencies": {
-    "concurrently": "^8.2.2",
-    "electron": "^29.1.0",
-    "electron-builder": "^24.13.3",
-    "electron-is-dev": "^3.0.1",
     "tailwindcss": "^3.4.1",
-    "wait-on": "^7.2.0"
+    "electron": "^29.1.0",
+    "electron-builder": "^24.13.3"
   }
 }
