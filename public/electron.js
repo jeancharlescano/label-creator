@@ -3,16 +3,25 @@ import path from 'path';
 
 import { app, BrowserWindow } from 'electron';
 import isDev from 'electron-is-dev';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
     width: 800,
     height: 600,
+    icon: __dirname + "/favicon.ico",
     webPreferences: {
       nodeIntegration: true,
     },
   });
+    console.log("🚀 ~ createWindow ~ __dirname:", __dirname + 'favicon.ico')
+
+  win.setMenu(null);
 
   // and load the index.html of the app.
   // win.loadFile("index.html");
