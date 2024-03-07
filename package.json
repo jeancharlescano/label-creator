@@ -36,7 +36,7 @@
   },
   "build": {
     "extends": null,
-    "appId": "com.example.electron-cra",
+    "appId": "com.reflets-montagne.label-creator",
     "files": [
       "dist/**/*",
       "build/**/*",
@@ -45,6 +45,10 @@
     ],
     "directories": {
       "buildResources": "assets"
+    },
+    "win": {
+      "icon": "public/favicon.ico",
+      "target": "msi"
     }
   },
   "eslintConfig": {
