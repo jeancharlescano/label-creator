@@ -21,7 +21,7 @@ function createWindow() {
   });
 
   win.setMenu(null);
-
+  win.webContents.openDevTools({mode:"detach"});
   // and load the index.html of the app.
   // win.loadFile("index.html");
   win.loadURL(
